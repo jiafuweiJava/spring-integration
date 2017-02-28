@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.jiafuwei.spring</groupId>
+    <artifactId>spring-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <groupId>com.jiafuwei.spring</groupId>
+  <artifactId>spring-mvc-web</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  
+  <name>spring-mvc-web Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+  		<spring.version>4.2.7.RELEASE</spring.version>
+        <jackson.version>2.6.7</jackson.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  
+  <dependencies>
+      
+    <!-- spring mvc 框架 -->
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-webmvc</artifactId>
+    	<version>${spring.version}</version>
+    </dependency>
+      
+    <!-- servlet -->
+    <dependency>
+   	 	<groupId>javax.servlet</groupId>
+    	<artifactId>servlet-api</artifactId>
+    	<version>2.5</version>
+	</dependency>
+	
+    <!-- jsp/jstl/core 页面标签 -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
+	<dependency>
+		<groupId>taglibs</groupId>
+		<artifactId>standard</artifactId>
+		<version>1.1.2</version>
+	</dependency>
+	
+	<!-- SLF4J API -->
+	<!-- SLF4J 是一个日志抽象层，允许你使用任何一个日志系统，并且可以随时切换还不需要动到已经写好的程序 -->
+	<dependency>
+   	 	<groupId>org.slf4j</groupId>
+   	 	<artifactId>slf4j-api</artifactId>
+   		<version>1.7.22</version>
+	</dependency>
+	
+	<!-- Log4j 日志系统（最常用） -->
+	<dependency>
+    	<groupId>org.slf4j</groupId>
+    	<artifactId>slf4j-log4j12</artifactId>
+    	<version>1.7.22</version>
+	</dependency>
+	
+	<!-- jackson -->
+	<dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+    </dependency>
+      
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+  
+  <build>
+    <finalName>spring-mvc-web</finalName>
+  </build>
+</project>
