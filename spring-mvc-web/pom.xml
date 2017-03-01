@@ -19,6 +19,8 @@
   <properties>
   		<spring.version>4.2.7.RELEASE</spring.version>
         <jackson.version>2.6.7</jackson.version>
+        <!-- mybatis版本号 -->  
+        <mybatis.version>3.2.6</mybatis.version>  
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   
@@ -32,6 +34,71 @@
     	<version>${spring.version}</version>
     </dependency>
       
+    	<dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-jdbc</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>
+        
+    	<dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-test</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency> 
+    
+    	
+    	<dependency>
+  			<groupId>c3p0</groupId>
+  			<artifactId>c3p0</artifactId>
+ 			 <version>0.9.1.2</version>
+		</dependency>
+		
+         <!-- 导入Mysql数据库链接jar包 -->  
+        <dependency>
+  			<groupId>mysql</groupId>
+  			<artifactId>mysql-connector-java</artifactId>
+ 			<version>5.1.4</version>
+		</dependency> 
+    	
+        <!-- mybatis核心包 -->  
+        <dependency>  
+            <groupId>org.mybatis</groupId>  
+            <artifactId>mybatis</artifactId>  
+            <version>${mybatis.version}</version>  
+        </dependency>  
+        <!-- mybatis/spring包 -->  
+        <dependency>  
+            <groupId>org.mybatis</groupId>  
+            <artifactId>mybatis-spring</artifactId>  
+            <version>1.2.2</version>  
+        </dependency> 
+        
+        
+         
+        
+         <!-- 上传组件包 -->  
+        <dependency>  
+            <groupId>commons-fileupload</groupId>  
+            <artifactId>commons-fileupload</artifactId>  
+            <version>1.3.1</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>commons-io</groupId>  
+            <artifactId>commons-io</artifactId>  
+            <version>2.4</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>commons-codec</groupId>  
+            <artifactId>commons-codec</artifactId>  
+            <version>1.9</version>  
+        </dependency> 
+    
+    
+    
+    
+    
+    
+    
     <!-- servlet -->
     <dependency>
    	 	<groupId>javax.servlet</groupId>
