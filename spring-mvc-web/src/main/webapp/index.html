@@ -1,0 +1,530 @@
+
+<!-- <!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset="utf-8">  
+<title>上传图片</title>  
+</head>  
+<body>  
+	<form action="/spring-mvc-web/upload" method="POST" enctype="multipart/form-data">  
+		<input type="file" name="file" /> <input type="submit" value="Submit" />
+	</form>  
+	
+	
+	<form name="serForm" action="/spring-mvc-web/fileUpload" method="post"  enctype="multipart/form-data">
+		<h1>采用流的方式上传文件</h1>
+		<input type="file" name="file">
+		<input type="submit" value="upload"/>
+	</form>
+</body>  
+</html>   -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge"/>
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="小程序带参数二维码生成,小程序二维码渠道精准统计,安卓和iOS二维码合并,将苹果安卓应用合成一个下载二维码,免费活码管理，矢量二维码,原二百二维码，二逼二维码"/>
+    <meta name="keywords"
+          content="好推二维码,小程序带参数二维码,小程序二维码统计,小程序统计,二维码合并,HotApp小程序统计，HotApp,ios安卓二维码,安卓苹果二维码,地推扫码监控,android ios二维码,二维码合成,皮皮二维码，二百二维码"/>
+
+    <meta content="email=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link href="https://www.hotapp.cn/images/favicon.ico?v=20161020" rel="shortcut icon" type="image/x-icon"/>
+    <!-- Bootstrap -->
+    <link href="https://www.hotapp.cn/dist/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://www.hotapp.cn/dist/main/css/base.css?v=201701041638" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://www.hotapp.cn/dist/bootstrap/html5shiv/html5shiv.min.js"></script>
+    <script src="https://www.hotapp.cn/dist/bootstrap/respond.js/respond.min.js"></script>
+    <![endif]-->
+    <title>
+                    好推二维码-小程序二维码生成,安卓苹果二维码合并成一个
+            </title>
+     
+<link href="https://www.hotapp.cn/dist/main/css/app.css?v=201702211732" rel="stylesheet">
+</head>
+
+<body>
+<!--主导航-->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <p class="app-name">好推二维码</p>
+                <p class="app-url">www.HotApp.cn</p>
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          
+            
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<!--nav-END-->
+     
+		<!--main-nav-->
+		<div class="main-nav">
+			<div class="container">
+				<ul class="row">
+					<li class="col-md-2 col-sm-3 col-xs-6 main-nav-tab active">
+						<a class="hotApp_tab" href="#hotApp_box" data-toggle="tab">
+							APP二维码
+							<span class="caret"></span>
+						</a>
+					</li>
+					
+					<li class="col-md-2 col-sm-3 col-xs-6 main-nav-tab ">
+						<a class="text_tab"  href="#textarea_box" data-toggle="tab">
+							网址
+							<span class="caret"></span>
+						</a>
+					</li>
+					<li class="col-md-2 col-sm-3 col-xs-6 main-nav-tab ">
+						<a class="decode_tab"  href="#decode_box" data-toggle="tab">
+							二维码识别
+							<span class="caret"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<!--container-->
+		<div class="container generate_qrcode_box tab-content">
+			<!--生成二维码 这是APP二维码-->
+			<div class="row tab-pane fade in active" id="hotApp_box">
+				<div class="col-md-8">
+					<div class="qrcode_explain">
+						用苹果手机扫描自动打开App Store页面下载APP,用安卓手机扫码自动打开应用页面下载APP。(如果只有一个下载地址，苹果和安卓应用下载地址可填一样的）<br />技术支持请加<span class="text_tips"> 好推二维码QQ群三：302449354</span>
+					</div>
+					<div class="qrcode_url_box">
+						<div class="qrcode_url_tips">
+							<b class="os_name">iOS系统</b>
+							<lable class="auto_logo_lable "><input type="checkbox" checked="checked" value="1" class="auto_logo_checkbox"> 自动生成logo</lable>
+							<!--<a target="_blank" href="http://www.cnblogs.com/likwo/p/5865112.html" class="a_link pull-right" >如何获取AppStore下载地址</a>-->
+						</div>
+						<div class="qrcode_url_input_box">
+							 <input type="text" placeholder="请输入苹果应用下载地址" id="ios_url" class="form-control qrcode_url_input">
+						</div>
+					</div>
+					<div class="qrcode_url_box">
+						<div class="qrcode_url_tips">
+							<b class="os_name">安卓系统</b>
+						</div>
+						<div class="qrcode_url_input_box">
+							 <input type="text" id="android_url" class="form-control qrcode_url_input"  placeholder="请输入安卓系统应用下载地址" >
+						</div>
+					</div>
+					<div class="row user_link_box" style="display: none;">
+					</div>
+					<div class="alert alert-danger" style="display: none;"> 
+	                    <span class="txt"></span>
+	                </div>
+					<div class="generate_btn_box">
+						<button class="btn btn_default generate_qrcode_btn">
+							  生成二维码
+                        </button>
+                     </div>
+				</div>
+				<div class="col-md-4">
+					<div class="qrcode_show_box">
+						<img class="qrcode_img" src="image/qrcode_no.jpg"/>
+					</div>
+					<div class="qrcode_function clearfix row">
+						<input type="hidden" name="" class="qrcode_key" value="" />
+						<input type="hidden" name="" class="shortUrl" value="" />
+						<input type="hidden" name="" class="qrcode_path" value="" />
+						<div class="col-md-6 upload_btnbox">
+							<button class="btn btn-default upload_logo pull-left" id="hotApp-qrcode-addLogo" >上传LOGO</button>
+						</div>
+						<div class="col-md-6 down_btnbox">
+							<div class="btn-group down_qrcode_box pull-right">
+								<button type="button" class="btn btn-default down_qrcode_btn" id="hotApp-qrcode-downBtn" data-downurl='' onclick="qrcodeDown('#hotApp_box')">下载二维码</button>
+								<button type="button" class="btn btn-default down_qrcode_more" data-toggle="tooltip" data-placement="top" title="更多格式下载"  onclick="openDownPage('#hotApp_box')"></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!--网址转二维码-->
+			<div class="row tab-pane fade" id="textarea_box">
+				<div class="col-md-8">
+					<div class="qrcode_url_box">
+						<div class="qrcode_url_tips">
+							<b class="os_name">请输入网址或者文本:</b>
+						</div>
+						<div class="qrcode_url_input_box">
+							<textarea class="form-control qrcode_url_textarea " id="url-text" placeholder="http://"></textarea>
+						</div>
+					</div>
+					<div class="alert alert-danger" style="display: none;"> 
+	                    <span class="txt"></span>
+	                </div>
+					<div class="generate_btn_box">
+						<button class="btn btn_default generate_qrcode_btn">生成二维码</button>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="qrcode_show_box">
+						<img class="qrcode_img" src="image/qrcode_no.jpg"/>
+					</div>
+					<div class="qrcode_function clearfix row">
+						<input type="hidden" name="" class="qrcode_path" value="" />
+						<input type="hidden" name="" class="shortUrl" value="" />
+						<div class="col-md-6 upload_btnbox">
+							<button class="btn btn-default upload_logo pull-left" id="url-qrcode-addLogo">上传LOGO</button>
+						</div>
+						<div class="col-md-6 down_btnbox">
+							<div class="btn-group dropup down_qrcode_box pull-right">
+								<button type="button" class="btn btn-default down_qrcode_btn" onclick="qrcodeDown('#textarea_box')">下载二维码</button>
+								<button type="button" class="btn btn-default  down_qrcode_more" onclick="openDownPage('#textarea_box')">
+								   
+								</button>
+							</div>
+						</div>		
+					</div>
+				</div>
+			</div>
+			<!--网址转二维码-END-->
+			
+			<!--二维码解码-->
+			<div class="row tab-pane fade" id="decode_box">
+				<div class="col-md-6 decode_upload_box clearfix">
+					<div class="decode_upload_left">
+						<lable class="decode_upload_btn_lable" >上传二维码解码</lable>：
+					</div>
+					<div class="decode_upload_right">
+						<button class="bg_default btn decode_upload_btn" id="uploadQrCode" data-url="https://www.hotapp.cn/qrcode/parse"
+                        data-sequential-uploads data-form-data='{"_token": '8AuENjo0MXxu0fYX2aqUyNWLciVrgKcbKp0ZwIaA' }'>选择二维码图片</button>
+                        <p class="" id="qrcode-parse-result" style="display: none;"></p>
+						<p class="tips"><span class="text_default">*</span>图片：jpg、jpeg、gif、png </p>
+						<p class="tips"><span class="text_default">*</span>大小：小于2M </p>
+						<p class="tips"><span class="text_default">*</span>上传带二维码的图片</p>
+					</div>
+				</div>
+				<div class="col-md-6 decode_results">
+					<p class="fz_20">解析结果：</p>
+					<textarea name="" rows="" cols="" class="form-control decode_results_textarea" placeholder=""></textarea>
+					<br />
+					<div class="jiema">
+						<span style="font-size: 16px;"><!--小程序二维码解码器--> 二维码服务</span>
+						<img width="200" src="https://www.hotapp.cn/dist/main/img/index/jiema.png"/>
+					</div>
+				</div>
+				<div class="col-md-12">
+					
+				</div>
+			</div>
+			<!--二维码解码-END-->
+			
+			
+		</div>
+		
+	
+			
+			
+			
+			
+		
+<footer id="footer">
+    <div class="container text-center">
+        <div class="site_map"><a target="_blank" href="https://www.hotapp.cn/about">关于我们</a></div>
+        <p>好推二维码技术</p>
+    </div>
+</footer>
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://www.hotapp.cn/dist/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://www.hotapp.cn/dist/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://www.hotapp.cn/js/plupload.dev.js?20160912"</script>
+<script src="https://www.hotapp.cn/js/moxie.js?20160912"></script>
+<script type="text/javascript">
+	
+		
+	var	apiUrl = window.location.href;
+	console.info(apiUrl);
+	
+
+	var isLogin = "";
+	//校验url
+	function IsURL(str_url) {
+	    return str_url.indexOf('.') != -1;
+	}; 
+
+    //bootstrap插件
+    //活码按钮的提示
+    $('.huoma-btn').popover({
+        trigger: 'hover focus',
+        placement: 'bottom',
+        content: '活码APP的下载地址存储在云端，APP下载地址和下载页面可更改和设置。活码是可管理的二维码，可创建不同的渠道管理二维码，可查看扫码统计',
+        title: ''
+    });
+    //点击自动生成logo事件
+    $('#hotApp_box .auto_logo_checkbox').on('click', function() {
+        if($(this).is(':checked')) {
+            $(this).val(1);
+        } else {
+            $(this).val(0);
+        }
+    });
+    //点击app二维码生成按钮地 事件
+    $('#hotApp_box .generate_qrcode_btn').on('click', function() {
+        var $btn = $(this),
+            $ios_url = $('#ios_url').val(),
+            $android_url = $('#android_url').val(),
+            $errTips = $('#hotApp_box .alert'),
+            obtainLogo = $('#hotApp_box .auto_logo_checkbox').val();
+        //隐藏提示
+        $errTips.hide();
+        $('#hotApp_box .user_link_box').hide();
+        //验证ios网址
+        if($ios_url == '') {
+            $errTips.show().html('<strong>IOS系统网址不能为空 ! </strong>');
+            return false;
+        }
+
+        if(IsURL($ios_url) == false) {
+            $errTips.show().html('<strong>IOS系统 填写的网址不正确 ! </strong>应填写如 https://itunes.apple.com/cn/app/xxx');
+            return false;
+        }
+
+        if($ios_url.indexOf("https://appsto.re/") > -1) {
+            //过滤掉链接后面的中文字符
+            $ios_url = $ios_url.match(/(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|\&|-)+)/g);
+            $ios_url = $ios_url[0];
+            $('#ios_url').val($ios_url);
+        }
+
+        //验证android网址
+        if($android_url == "") {
+            $errTips.show().html("<strong>安卓系统网址不能为空 ! </strong>");
+            return false;
+        }
+
+        if(IsURL($android_url) == false) {
+            $errTips.show().html("<strong>安卓系统填写的网址不正确 ! </strong> 请填写应用宝，百度应用市场，360应用等市场下载地址");
+            return false;
+        }
+
+        $btn.button('loading');
+
+        $.ajax({
+            type: "POST",
+            url: apiUrl+"synthesisQRCode",
+            dataType: 'json',
+            data: {
+                'ios_url': $ios_url,
+                'android_url': $android_url,
+                'autoCrawl': obtainLogo,
+                '_token': "8AuENjo0MXxu0fYX2aqUyNWLciVrgKcbKp0ZwIaA"
+            },
+            success: function(data) {
+                $btn.button('reset');
+                if(data.msg) {
+                    $errTips.show().html("<strong>" + data.msg + "</strong>");
+                    return false;
+                } 
+
+                if(isLogin) {
+                    if(data.data.recreateFlag==0){
+                        $errTips.show().html("<strong>活码创建成功 ! </strong> 查看统计，修改下载地址，修改微信朋友圈文字，请在管理页面操作。 ");
+                    }else{
+                        $errTips.show().html("<strong>已经存在相同的下载链接二维码，如果需要重新创建，请再后台管理新增渠道 ! </strong>");
+                    }
+                } else {
+                    $btn.removeClass('btn_default').addClass('bg_ccc');
+                }
+                
+                $('#hotApp_box .qrcode_key').val(data.data.accessKey);
+                $('#hotApp_box .user_link_box').show();
+                $('#hotApp_box .huoma-btn').show();
+                $('#hotApp_box .logo-tips').hide();
+                $("#hotApp_box .qrcode_img").attr("src", data.data.qrcode_path);
+                $('#hotApp_box .shortUrl').val(data.data.shortUrl);
+                $("#hotApp_box .qrcode_path").val(data.data.qrcode_path);
+                $("#hotApp_box .duanwangzhi-js").attr("href", data.data.shortUrl).text('推广短网址：' + data.data.shortUrl);
+                if($ios_url.indexOf("https://appsto.re/") > -1) {
+                    $errTips.show().html('<strong>IOS系统的短链接可能打不开 ! </strong>建议应填写如 https://itunes.apple.com/cn/app/xxx');
+                }
+            },
+            error: function(err) {
+            	$btn.button('reset');
+                console.log(err)
+            }
+        });
+    });
+    
+    ////------------APP二维码logo上传-------------------////
+	//实例化一个plupload上传对象
+	var uploader = new plupload.Uploader({
+	    browse_button: 'hotApp-qrcode-addLogo', //触发文件选择对话框的按钮，为那个元素id
+	    url: "http://localhost:8080/spring-mvc-web/fileUploadLogo", //服务器端的上传页面地址
+	    flash_swf_url: 'js/Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
+	    silverlight_xap_url: 'js/Moxie.xap' //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
+	});
+	
+	//在实例对象上调用init()方法进行初始化
+	uploader.init();
+	
+	uploader.bind('BeforeUpload', function(uploader, file) {
+	    //每个事件监听函数都会传入一些很有用的参数，
+	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+	    uploader.setOption("multipart_params", {
+	        "access_key": $('#hotApp_box .qrcode_key').val(),
+	        '_token': "8AuENjo0MXxu0fYX2aqUyNWLciVrgKcbKp0ZwIaA"
+	    });
+	});
+	//绑定各种事件，并在事件监听函数中做你想做的事
+	uploader.bind('FilesAdded', function(uploader, files) {
+	
+	    if(files.length > 1) {
+	        alert("只能选择一个文件")
+	        return false;
+	    }
+	    if(files.length == 0) {
+	        return;
+	    }
+		uploader.start();
+	   /* $key = $('#hotApp_box .qrcode_key').val();
+	    if($key == '') {
+	        alert("请先生成二维码，再添加logo")
+	        return false;
+	    } else {
+	        uploader.start();
+	    }*/
+	});
+	
+	uploader.bind('UploadProgress', function(uploader, file) {
+	    //每个事件监听函数都会传入一些很有用的参数，
+	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+	});
+	
+	uploader.bind('FileUploaded', function(up, file, info) {
+	    //每个事件监听函数都会传入一些很有用的参数，
+	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+	    console.info(info.response);
+	    var data = JSON.parse(info.response);
+	    if(data.ret != 0) {
+	        alert(data.msg);
+	        return;
+	    } else {
+	        $("#hotApp_box .qrcode_img").attr("src",data.data.qrcode_path);
+	        $('#hotApp_box .shortUrl').val(data.data.shortUrl);
+	        $("#hotApp_box .qrcode_path").val(data.data.qrcode_path);
+	    }
+	});
+	
+    
+	
+	
+    
+
+	
+	
+	////--二维码解码图片上传
+	//实例化一个plupload上传对象
+	var uploader = new plupload.Uploader({
+	    browse_button: 'uploadQrCode', //触发文件选择对话框的按钮，为那个元素id
+	    url: "https://www.hotapp.cn/qrcode/parse", //服务器端的上传页面地址
+	    flash_swf_url: 'js/Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
+	    silverlight_xap_url: 'js/Moxie.xap' //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
+	});
+	
+	//在实例对象上调用init()方法进行初始化
+	uploader.init();
+	
+	uploader.bind('BeforeUpload', function(uploader, file) {
+	    //每个事件监听函数都会传入一些很有用的参数，
+	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+	    uploader.setOption("multipart_params", {
+	        '_token': "8AuENjo0MXxu0fYX2aqUyNWLciVrgKcbKp0ZwIaA"
+	    });
+	});
+	//绑定各种事件，并在事件监听函数中做你想做的事
+	uploader.bind('FilesAdded', function(uploader, files) {
+	
+	    if(files.length > 1) {
+	        alert("只能选择一个文件")
+	        return false;
+	    }
+	    if(files.length == 0) {
+	        return false;
+	    }
+	    uploader.start();
+	    $('#uploadQrCode').button('loading');
+	});
+	
+	uploader.bind('UploadProgress', function(uploader, file) {
+	    //每个事件监听函数都会传入一些很有用的参数，
+	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+	});
+	
+	uploader.bind('FileUploaded', function(up, file, info) {
+	    //每个事件监听函数都会传入一些很有用的参数，
+	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+	    var data = JSON.parse(info.response);
+	    $('#uploadQrCode').button('reset');
+	    if(!data.text) {
+	        $('#qrcode-parse-result').text('解析失败').attr('class','text-danger');
+	        return;
+	    } else {
+	        $('#qrcode-parse-result').text('解析成功').attr('class','text-success').show();
+	        $('#decode_box .decode_results_textarea').val(data.text)
+	    }
+	});   
+	
+	
+	
+	
+	
+	
+	//下载按钮
+	function qrcodeDown(id){
+		var qrcode_path = $(id).find('.qrcode_path').val();
+		if(qrcode_path == '') {
+	        alert("请先生成二维码，再下载!");
+	        return false;
+	   } else {
+	    	window.open("https://www.hotapp.cn/qrcode/download" + "?qrcode_path=" + qrcode_path);
+	    }
+	}
+	//更多下载
+	function openDownPage(id){
+		var qrcode_path = $(id).find('.shortUrl').val();
+		
+		if(qrcode_path == '') {
+	        alert("请先生成二维码，再下载!");
+	        return false;
+	   } else {
+	    	window.open("https://www.hotapp.cn/downloadQrCode" + "?qrcode_path=" + qrcode_path);
+	    }
+	}
+</script>
+
+</body>
+
+</html>

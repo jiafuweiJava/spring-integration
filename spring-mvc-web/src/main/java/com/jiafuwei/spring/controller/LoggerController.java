@@ -20,8 +20,14 @@ public class LoggerController{
 	private IUserService userService;
 	
 	@RequestMapping("/logger")
-    public void handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public void handleRequest(HttpServletRequest request, HttpServletResponse resp) throws Exception {
 
+		StringBuffer url = request.getRequestURL();
+		logger.info("RequestURI - {}", request.getRequestURI());
+		logger.info("ContextPath - {}", request.getContextPath());
+		String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append(request.getContextPath()).append("/").toString(); 
+		logger.info("这是一条日志信息 - {}", tempContextUrl);
+		
 		User user = userService.getUserById(1);
 		System.out.println(user.getUserName());
 		 logger.info("值："+user.getUserName());
