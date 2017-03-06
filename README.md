@@ -1,9 +1,11 @@
 # spring-integration
-Spring 整合大全
+Spring 二维码合成、生成、解析项目
 -------------------
 在这个项目里主要实现了以下技术：
+* 整合 二维码生成、解析
 * 整合 MyBatis 
-* 新增图片上传
+* 整合 Freemarker  
+* SpringMVC 上传下载
 * 整合log4j日志打印
 * 整合RESTful API 的支持
 -------------------
