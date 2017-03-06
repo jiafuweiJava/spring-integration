@@ -27,9 +27,9 @@
           content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge"/>
     <meta name="renderer" content="webkit">
-    <meta name="description" content="小程序带参数二维码生成,小程序二维码渠道精准统计,安卓和iOS二维码合并,将苹果安卓应用合成一个下载二维码,免费活码管理，矢量二维码,原二百二维码，二逼二维码"/>
+    <meta name="description" content="java二维码,安卓和iOS二维码合并"/>
     <meta name="keywords"
-          content="好推二维码,小程序带参数二维码,小程序二维码统计,小程序统计,二维码合并,HotApp小程序统计，HotApp,ios安卓二维码,安卓苹果二维码,地推扫码监控,android ios二维码,二维码合成,皮皮二维码，二百二维码"/>
+          content="java二维码,android ios二维码,二维码合成"/>
 
     <meta content="email=no" name="format-detection">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -45,9 +45,7 @@
     <script src="https://www.hotapp.cn/dist/bootstrap/html5shiv/html5shiv.min.js"></script>
     <script src="https://www.hotapp.cn/dist/bootstrap/respond.js/respond.min.js"></script>
     <![endif]-->
-    <title>
-                    好推二维码-小程序二维码生成,安卓苹果二维码合并成一个
-            </title>
+    <title>java二维码,二维码生成,安卓苹果二维码合并成一个</title>
      
 <link href="https://www.hotapp.cn/dist/main/css/app.css?v=201702211732" rel="stylesheet">
 </head>
@@ -65,9 +63,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
-                <p class="app-name">好推二维码</p>
-                <p class="app-url">www.HotApp.cn</p>
+            <a class="navbar-brand" href="https://github.com/jiafuweiJava/spring-integration" target="_blank">
+                <p class="app-name">java二维码生成</p>
+                <p class="app-url">https://github.com/jiafuweiJava</p>
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -114,12 +112,13 @@
 			<div class="row tab-pane fade in active" id="hotApp_box">
 				<div class="col-md-8">
 					<div class="qrcode_explain">
-						用苹果手机扫描自动打开App Store页面下载APP,用安卓手机扫码自动打开应用页面下载APP。(如果只有一个下载地址，苹果和安卓应用下载地址可填一样的）<br />技术支持请加<span class="text_tips"> 好推二维码QQ群三：302449354</span>
+						用苹果手机扫描自动打开App Store页面下载APP,用安卓手机扫码自动打开应用页面下载APP。(如果只有一个下载地址，苹果和安卓应用下载地址可填一样的）<br />
+						技术支持联系<span class="text_tips"> <a href="mailto:jiaufwei@gmail.com">jiaufwei@gmail.com</a></span>
 					</div>
 					<div class="qrcode_url_box">
 						<div class="qrcode_url_tips">
 							<b class="os_name">iOS系统</b>
-							<lable class="auto_logo_lable "><input type="checkbox" checked="checked" value="1" class="auto_logo_checkbox"> 自动生成logo</lable>
+							<!-- <lable class="auto_logo_lable "><input type="checkbox" checked="checked" value="1" class="auto_logo_checkbox"> 自动生成logo</lable> -->
 							<!--<a target="_blank" href="http://www.cnblogs.com/likwo/p/5865112.html" class="a_link pull-right" >如何获取AppStore下载地址</a>-->
 						</div>
 						<div class="qrcode_url_input_box">
@@ -159,7 +158,7 @@
 						<div class="col-md-6 down_btnbox">
 							<div class="btn-group down_qrcode_box pull-right">
 								<button type="button" class="btn btn-default down_qrcode_btn" id="hotApp-qrcode-downBtn" data-downurl='' onclick="qrcodeDown('#hotApp_box')">下载二维码</button>
-								<button type="button" class="btn btn-default down_qrcode_more" data-toggle="tooltip" data-placement="top" title="更多格式下载"  onclick="openDownPage('#hotApp_box')"></button>
+								<!-- <button type="button" class="btn btn-default down_qrcode_more" data-toggle="tooltip" data-placement="top" title="更多格式下载"  onclick="openDownPage('#hotApp_box')"></button> -->
 							</div>
 						</div>
 					</div>
@@ -198,9 +197,9 @@
 						<div class="col-md-6 down_btnbox">
 							<div class="btn-group dropup down_qrcode_box pull-right">
 								<button type="button" class="btn btn-default down_qrcode_btn" onclick="qrcodeDown('#textarea_box')">下载二维码</button>
-								<button type="button" class="btn btn-default  down_qrcode_more" onclick="openDownPage('#textarea_box')">
+								<!-- <button type="button" class="btn btn-default  down_qrcode_more" onclick="openDownPage('#textarea_box')">
 								   
-								</button>
+								</button> -->
 							</div>
 						</div>		
 					</div>
@@ -249,8 +248,8 @@
 		
 <footer id="footer">
     <div class="container text-center">
-        <div class="site_map"><a target="_blank" href="https://www.hotapp.cn/about">关于我们</a></div>
-        <p>好推二维码技术</p>
+        <div class="site_map"><a target="_blank" href="https://github.com/jiafuweiJava/spring-integration">项目源码</a></div>
+        <p>java二维码技术</p>
     </div>
 </footer>
 
@@ -382,7 +381,7 @@
 	//实例化一个plupload上传对象
 	var uploader = new plupload.Uploader({
 	    browse_button: 'hotApp-qrcode-addLogo', //触发文件选择对话框的按钮，为那个元素id
-	    url: "http://localhost:8080/spring-mvc-web/fileUploadLogo", //服务器端的上传页面地址
+	    url: apiUrl+"fileUploadLogo", //服务器端的上传页面地址
 	    flash_swf_url: 'js/Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
 	    silverlight_xap_url: 'js/Moxie.xap' //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
 	});
@@ -439,8 +438,100 @@
 	});
 	
     
+	//-文本链接生成二维码-//
+    $('#textarea_box .generate_qrcode_btn').on('click', function() {
+        var $btn = $(this),
+            $url_txt = $('#url-text').val(),
+            $errTips = $('#textarea_box .alert');
+			$errTips.hide();
+        if($url_txt == "") {
+            $errTips.show().html("<strong>内容不能为空 ! </strong>");
+            return false;
+        }
+
+        $btn.button('loading');
+        console.info(apiUrl+"urlQRCode");
+        $.ajax({
+            type: "POST",
+            url: apiUrl+"urlQRCode",
+            dataType: 'json',
+            data: {
+                'urltxt': $url_txt
+            },
+            success: function(data) {
+                $btn.button('reset');
+                if(data.res != 1) {
+                    $errTips.show().html("<strong>" + data.meg + "</strong>");
+                } else {
+                    $("#textarea_box .qrcode_img").attr("src", "data:image/png;base64," + data.data.qrcode);
+                    $("#textarea_box .shortUrl").val($url_txt);
+                    $("#textarea_box .qrcode_path").val(data.data.qrcode_path);
+                    
+                }
+            },
+            error:function(err){
+            	$btn.button('reset');
+            	console.log(err);
+            }
+        });
+    });
 	
+	////--文本链接二维码logo上传
+	//实例化一个plupload上传对象
+	var uploader = new plupload.Uploader({
+	    browse_button: 'url-qrcode-addLogo', //触发文件选择对话框的按钮，为那个元素id
+	    url: apiUrl+"urlQRCode", //服务器端的上传页面地址
+	    flash_swf_url: 'js/Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
+	    silverlight_xap_url: 'js/Moxie.xap' //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
+	});
 	
+	//在实例对象上调用init()方法进行初始化
+	uploader.init();
+	
+	uploader.bind('BeforeUpload', function(uploader, file) {
+	    //每个事件监听函数都会传入一些很有用的参数，
+	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+	    uploader.setOption("multipart_params", {
+	        "urltxt": $('#url-text').val()
+	    });
+	});
+	//绑定各种事件，并在事件监听函数中做你想做的事
+	uploader.bind('FilesAdded', function(uploader, files) {
+	
+	    if(files.length > 1) {
+	        alert("只能选择一个文件")
+	        return false;
+	    }
+	    if(files.length == 0) {
+	        return;
+	    }
+	
+	    $key = $('#url-text').val();
+	    if($key == '') {
+	        alert("请先生成二维码，再添加logo")
+	        return false;
+	    } else {
+	        uploader.start();
+	    }
+	});
+	
+	uploader.bind('UploadProgress', function(uploader, file) {
+	    //每个事件监听函数都会传入一些很有用的参数，
+	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+	});
+	
+	uploader.bind('FileUploaded', function(up, file, info) {
+	    //每个事件监听函数都会传入一些很有用的参数，
+	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+	    var data = JSON.parse(info.response);
+	    if(data.res != 1) {
+	        alert(data.meg);
+	        return;
+	    } else {
+	        $("#textarea_box .qrcode_path").val(data.data.qrcode_path);
+	        $("#textarea_box .qrcode_img").attr("src", "data:image/png;base64," + data.data.qrcode);
+	    }
+	});
     
 
 	
@@ -509,7 +600,7 @@
 	        alert("请先生成二维码，再下载!");
 	        return false;
 	   } else {
-	    	window.open("https://www.hotapp.cn/qrcode/download" + "?qrcode_path=" + qrcode_path);
+	    	window.open(apiUrl+"download" + "?qrcode_path=" + qrcode_path);
 	    }
 	}
 	//更多下载

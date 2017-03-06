@@ -20,12 +20,20 @@
   		<spring.version>4.2.7.RELEASE</spring.version>
         <jackson.version>2.6.7</jackson.version>
         <!-- mybatis版本号 -->  
-        <mybatis.version>3.2.6</mybatis.version>  
+        <mybatis.version>3.2.6</mybatis.version> 
+        <!-- freemarker模板包版本 -->
+        <freemarker.version>2.3.23</freemarker.version> 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   
   
   <dependencies>
+     <!-- freemarker依赖 -->
+     <dependency>
+       <groupId>org.freemarker</groupId>
+       <artifactId>freemarker</artifactId>
+       <version>${freemarker.version}</version>
+     </dependency>
       
     <!-- spring mvc 框架 -->
     <dependency>
@@ -42,9 +50,17 @@
         
     	<dependency>  
             <groupId>org.springframework</groupId>  
+            <artifactId>spring-context-support</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>
+        
+    	<dependency>  
+            <groupId>org.springframework</groupId>  
             <artifactId>spring-test</artifactId>  
             <version>${spring.version}</version>  
         </dependency> 
+        
+    	
     
     	
     	<dependency>

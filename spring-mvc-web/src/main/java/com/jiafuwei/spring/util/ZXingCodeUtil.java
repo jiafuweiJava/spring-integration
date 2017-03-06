@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +64,14 @@ public class ZXingCodeUtil {
             //可以看到这个方法最终返回的是这个二维码的imageBase64字符串
             //前端用 <img src="data:image/png;base64,${imageBase64QRCode}"/> 其中${imageBase64QRCode}对应二维码的imageBase64字符串
             //new File("E:/" + new Date().getTime() + "test.png")
+            //判断目标文件所在的目录是否存在  
+            if(!file.getParentFile().exists()) {  
+                //如果目标文件所在的目录不存在，则创建父目录  
+                System.out.println("目标文件所在目录不存在，准备创建它！");  
+                if(!file.getParentFile().mkdirs()) {  
+                    System.out.println("创建目标文件所在目录失败！");  
+                }  
+            }
             ImageIO.write(image, "png", file); 
            
             String imageBase64QRCode =  new sun.misc.BASE64Encoder().encodeBuffer(baos.toByteArray());
@@ -80,17 +89,18 @@ public class ZXingCodeUtil {
      * @param qrUrl 链接地址
      * @param request 请求
      * @param productName 二维码名称
+     * @param logoFile logo文件
+     * @param createFile 生成的文件路径
      * @return
      */
-    public static String getLogoQRCode(String qrUrl,HttpServletRequest request,String productName) {
+    public static String getLogoQRCode(String qrUrl,HttpServletRequest request,String productName,File logoFile,File createFile) {
     	// String filePath = request.getSession().getServletContext().getRealPath("/") + "resources/images/logoImages/llhlogo.png";
         //filePath是二维码logo的路径，但是实际中我们是放在项目的某个路径下面的，所以路径用上面的，把下面的注释就好
-        String filePath = "E:/boy.jpg";  //TODO 
         String content = qrUrl;
         try{  
         	ZXingCodeUtil zp = new ZXingCodeUtil();
             BufferedImage bim = zp.getQR_CODEBufferedImage(content, BarcodeFormat.QR_CODE, 400, 400, zp.getDecodeHintType());
-            return zp.addLogo_QRCode(bim, new File(filePath), new LogoConfig(), productName);
+            return zp.addLogo_QRCode(bim, logoFile , new LogoConfig(), productName, createFile);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -99,7 +109,7 @@ public class ZXingCodeUtil {
     }
 
     /** * 给二维码图片添加Logo * * @param qrPic * @param logoPic */
-    public String addLogo_QRCode(BufferedImage bim, File logoPic, LogoConfig logoConfig, String productName) {
+    public String addLogo_QRCode(BufferedImage bim, File logoPic, LogoConfig logoConfig, String productName, File createFile) {
         try {
             /** * 读取二维码图片，并构建绘图对象 */
             BufferedImage image = bim;
@@ -169,7 +179,14 @@ public class ZXingCodeUtil {
             //二维码生成的路径，但是实际项目中，我们是把这生成的二维码显示到界面上的，因此下面的折行代码可以注释掉
             //可以看到这个方法最终返回的是这个二维码的imageBase64字符串
             //前端用 <img src="data:image/png;base64,${imageBase64QRCode}"/> 其中${imageBase64QRCode}对应二维码的imageBase64字符串
-            ImageIO.write(image, "png", new File("E:/" + new Date().getTime() + "test.png")); 
+            if(!createFile.getParentFile().exists()) {  
+                //如果目标文件所在的目录不存在，则创建父目录  
+                System.out.println("目标文件所在目录不存在，准备创建它！");  
+                if(!createFile.getParentFile().mkdirs()) {  
+                    System.out.println("创建目标文件所在目录失败！");  
+                }  
+            }
+            ImageIO.write(image, "png", createFile); 
            
             String imageBase64QRCode =  new sun.misc.BASE64Encoder().encodeBuffer(baos.toByteArray());
             baos.close();
