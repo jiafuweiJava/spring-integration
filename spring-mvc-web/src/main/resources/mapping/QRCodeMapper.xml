@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiafuwei.spring.dao.IQRCodeDao" >
+    
+  <resultMap id="BaseResultMap" type="com.jiafuwei.spring.po.QRCode" >
+    <id column="key_id" property="key_id" jdbcType="VARCHAR" />
+    <result column="ios_url" property="ios_url" jdbcType="VARCHAR" />
+    <result column="android_url" property="android_url" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    key_id, ios_url, android_url
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from qrcode_t
+    where key_id = #{key_id,jdbcType=VARCHAR}
+  </select>
+  
+  <insert id="insert" parameterType="com.jiafuwei.spring.po.QRCode" >
+    insert into qrcode_t (key_id, ios_url, android_url )
+    values ( #{key_id,jdbcType=VARCHAR}, #{ios_url,jdbcType=VARCHAR}, 
+      #{android_url,jdbcType=VARCHAR})
+  </insert>
+  
+  
+</mapper>

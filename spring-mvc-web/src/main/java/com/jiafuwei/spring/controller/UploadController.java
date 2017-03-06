@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
   
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;  
 import org.springframework.ui.ModelMap;  
 import org.springframework.web.bind.annotation.RequestMapping;  
@@ -29,11 +30,17 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.jiafuwei.spring.po.JsonResult;
+import com.jiafuwei.spring.po.QRCode;
+import com.jiafuwei.spring.service.IQRCodeService;
+import com.jiafuwei.spring.util.UuidUtil;
 import com.jiafuwei.spring.util.ZXingCodeUtil;
   
 @Controller  
 public class UploadController {  
 	final Logger logger = LoggerFactory.getLogger(getClass());
+	
+	@Autowired
+	private IQRCodeService qRCodeService;
  
     /*
      * 通过流的方式上传文件
@@ -102,8 +109,8 @@ public class UploadController {
     @ResponseBody
     public JsonResult  SynthesisQRCode(HttpServletRequest request,
     		@RequestParam(value="file",required=false) CommonsMultipartFile logoFile,
-    		@RequestParam(value="ios_url",required=false) String ios_url,
-    		@RequestParam(value="ios_url",required=false) String android_url,
+    		@RequestParam(value="ios_url",required=true) String ios_url,
+    		@RequestParam(value="android_url",required=true) String android_url,
     		ModelMap model) throws IOException {
     	
     	 logger.info("SynthesisQRCode - {}", "开始了");
@@ -112,6 +119,12 @@ public class UploadController {
          StringBuffer url = request.getRequestURL();  
          String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append(request.getContextPath()).append("/").toString(); 
          
+         String key_id = UuidUtil.generateShortUuid();
+         QRCode qRCode = new QRCode();
+         qRCode.setAndroid_url(android_url);
+         qRCode.setIos_url(ios_url);
+         qRCode.setKey_id(key_id);
+         int intInsert = qRCodeService.insert(qRCode);
          
          String path = request.getSession().getServletContext().getRealPath("upload");
          String fileName = new Date().getTime() + "qrcode.png";

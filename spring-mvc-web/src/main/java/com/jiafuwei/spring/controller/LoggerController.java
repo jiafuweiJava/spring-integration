@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jiafuwei.spring.po.QRCode;
 import com.jiafuwei.spring.po.User;
+import com.jiafuwei.spring.service.IQRCodeService;
 import com.jiafuwei.spring.service.IUserService;
+import com.jiafuwei.spring.util.UuidUtil;
 
 @Controller
 public class LoggerController{
@@ -18,10 +21,19 @@ public class LoggerController{
 	
 	@Autowired
 	private IUserService userService;
+	@Autowired
+	private IQRCodeService qRCodeService;
 	
 	@RequestMapping("/logger")
     public void handleRequest(HttpServletRequest request, HttpServletResponse resp) throws Exception {
 
+		QRCode qRCode = qRCodeService.getQRCodeById("123");
+		logger.info("qRCode："+qRCode);
+		
+		qRCode.setKey_id(UuidUtil.generateShortUuid());
+		int urldfdf = qRCodeService.insert(qRCode);
+		logger.info("urldfdf："+urldfdf);
+		
 		StringBuffer url = request.getRequestURL();
 		logger.info("RequestURI - {}", request.getRequestURI());
 		logger.info("ContextPath - {}", request.getContextPath());
