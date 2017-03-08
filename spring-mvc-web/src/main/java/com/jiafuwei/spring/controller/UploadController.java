@@ -118,6 +118,7 @@ public class UploadController {
     	 
          StringBuffer url = request.getRequestURL();  
          String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append(request.getContextPath()).append("/").toString(); 
+         logger.info("tempContextUrl - {}", tempContextUrl);
          
          String key_id = UuidUtil.generateShortUuid();
          QRCode qRCode = new QRCode();
@@ -130,7 +131,10 @@ public class UploadController {
          String fileName = new Date().getTime() + "qrcode.png";
          File createFile = new File(path+"/"+fileName);
          
-         String urltxt = "";
+         //访问路径 服务器地址+ findAppUrl + key_id
+         String urltxt = tempContextUrl+"findAppUrl/"+key_id;
+         logger.info("urltxt - {}", urltxt);
+         
          //生成二维码
          String imageBase64QRCode = "";
          if(logoFile != null){
@@ -152,10 +156,10 @@ public class UploadController {
          
          JsonResult jsonResult = new JsonResult();
          Map data = new HashMap<String, String>();
-         data.put("recreateFlag", "1");
+         data.put("recreateFlag", "0");
          data.put("qrcode_path", qrcode_path);
-         data.put("accessKey", "24108m");
-         data.put("shortUrl", "http://t.zmapp.com.cn/24108m");
+         data.put("accessKey", "13598992");
+         data.put("shortUrl", urltxt);
          jsonResult.setData(data);
          jsonResult.setMeg("生成成功");
          jsonResult.setRes(1);
@@ -216,6 +220,13 @@ public class UploadController {
         return jsonResult; 
     }
     
+    /**
+     * 二维码下载
+     * @param qrcode_path
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/download")  
     public void downloadFile(@RequestParam(value="qrcode_path",required=true) String qrcode_path,
     		HttpServletRequest request, HttpServletResponse response) throws IOException {    
@@ -243,6 +254,48 @@ public class UploadController {
         }    
         out.flush();    
         out.close();    
-      
     } 
+    
+    
+    /**
+     * 二维码解析
+     * @param request
+     * @param model
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("parseQRCode")
+    @ResponseBody
+    public JsonResult  ParseQRCode(HttpServletRequest request,ModelMap model,
+    		@RequestParam(value="file",required=false) CommonsMultipartFile logoFile) throws IOException {
+    	
+    	 logger.info("ParseQRCode - {}", "开始了");
+    	 
+         StringBuffer url = request.getRequestURL();  
+         String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append(request.getContextPath()).append("/").toString(); 
+        
+         String path = request.getSession().getServletContext().getRealPath("upload");
+         
+         String logoFileName = logoFile.getOriginalFilename();
+         File targetFile = new File(path, logoFileName);  
+         if(!targetFile.exists()){  
+             targetFile.mkdirs();  
+         } 
+         logoFile.transferTo(targetFile);
+         
+         String text = ZXingCodeUtil.parseQRCode(targetFile);
+         
+         targetFile.delete();
+         
+         logger.info("解析结果 - {}", text);
+         
+         JsonResult jsonResult = new JsonResult();
+         Map data = new HashMap<String, String>();
+         data.put("text", text);
+         jsonResult.setData(data);
+         jsonResult.setMeg("生成成功");
+         jsonResult.setRes(1);
+     
+        return jsonResult; 
+    }
 } 

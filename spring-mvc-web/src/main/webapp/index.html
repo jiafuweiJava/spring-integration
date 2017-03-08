@@ -1,25 +1,3 @@
-
-<!-- <!DOCTYPE html>  
-<html>  
-<head>  
-<meta charset="utf-8">  
-<title>上传图片</title>  
-</head>  
-<body>  
-	<form action="/spring-mvc-web/upload" method="POST" enctype="multipart/form-data">  
-		<input type="file" name="file" /> <input type="submit" value="Submit" />
-	</form>  
-	
-	
-	<form name="serForm" action="/spring-mvc-web/fileUpload" method="post"  enctype="multipart/form-data">
-		<h1>采用流的方式上传文件</h1>
-		<input type="file" name="file">
-		<input type="submit" value="upload"/>
-	</form>
-</body>  
-</html>   -->
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,19 +13,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
-    <link href="https://www.hotapp.cn/images/favicon.ico?v=20161020" rel="shortcut icon" type="image/x-icon"/>
+    <link href="image/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
     <!-- Bootstrap -->
-    <link href="https://www.hotapp.cn/dist/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://www.hotapp.cn/dist/main/css/base.css?v=201701041638" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://www.hotapp.cn/dist/bootstrap/html5shiv/html5shiv.min.js"></script>
-    <script src="https://www.hotapp.cn/dist/bootstrap/respond.js/respond.min.js"></script>
-    <![endif]-->
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+    <link href="static/base.css" rel="stylesheet">
+	<link href="static/app.css" rel="stylesheet">
     <title>java二维码,二维码生成,安卓苹果二维码合并成一个</title>
      
-<link href="https://www.hotapp.cn/dist/main/css/app.css?v=201702211732" rel="stylesheet">
 </head>
 
 <body>
@@ -135,6 +107,9 @@
 					</div>
 					<div class="row user_link_box" style="display: none;">
 					</div>
+					<div class="alert alert-success" style="display: none;"> 
+	                    <span class="txt"></span>
+	                </div>
 					<div class="alert alert-danger" style="display: none;"> 
 	                    <span class="txt"></span>
 	                </div>
@@ -225,11 +200,6 @@
 				<div class="col-md-6 decode_results">
 					<p class="fz_20">解析结果：</p>
 					<textarea name="" rows="" cols="" class="form-control decode_results_textarea" placeholder=""></textarea>
-					<br />
-					<div class="jiema">
-						<span style="font-size: 16px;"><!--小程序二维码解码器--> 二维码服务</span>
-						<img width="200" src="https://www.hotapp.cn/dist/main/img/index/jiema.png"/>
-					</div>
 				</div>
 				<div class="col-md-12">
 					
@@ -256,49 +226,39 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://www.hotapp.cn/dist/jquery/1.11.1/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://www.hotapp.cn/dist/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="https://www.hotapp.cn/js/plupload.dev.js?20160912"</script>
-<script src="https://www.hotapp.cn/js/moxie.js?20160912"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plupload.dev.js"</script>
+<script src="js/moxie.js"></script>
 <script type="text/javascript">
 	
 		
 	var	apiUrl = window.location.href;
 	console.info(apiUrl);
 	
-
-	var isLogin = "";
+	
+	
 	//校验url
 	function IsURL(str_url) {
 	    return str_url.indexOf('.') != -1;
 	}; 
 
-    //bootstrap插件
-    //活码按钮的提示
-    $('.huoma-btn').popover({
-        trigger: 'hover focus',
-        placement: 'bottom',
-        content: '活码APP的下载地址存储在云端，APP下载地址和下载页面可更改和设置。活码是可管理的二维码，可创建不同的渠道管理二维码，可查看扫码统计',
-        title: ''
-    });
-    //点击自动生成logo事件
-    $('#hotApp_box .auto_logo_checkbox').on('click', function() {
-        if($(this).is(':checked')) {
-            $(this).val(1);
-        } else {
-            $(this).val(0);
-        }
-    });
+    var $ios_url = '';
+    var $android_url = '';
+   
     //点击app二维码生成按钮地 事件
     $('#hotApp_box .generate_qrcode_btn').on('click', function() {
         var $btn = $(this),
-            $ios_url = $('#ios_url').val(),
-            $android_url = $('#android_url').val(),
-            $errTips = $('#hotApp_box .alert'),
+            $errTips = $('#hotApp_box .alert-danger'),
+            $successTips = $('#hotApp_box .alert-success'),
             obtainLogo = $('#hotApp_box .auto_logo_checkbox').val();
+        
+        $ios_url = $('#ios_url').val();
+        $android_url = $('#android_url').val();
+        
         //隐藏提示
         $errTips.hide();
+        $successTips.hide();
         $('#hotApp_box .user_link_box').hide();
         //验证ios网址
         if($ios_url == '') {
@@ -337,26 +297,16 @@
             dataType: 'json',
             data: {
                 'ios_url': $ios_url,
-                'android_url': $android_url,
-                'autoCrawl': obtainLogo,
-                '_token': "8AuENjo0MXxu0fYX2aqUyNWLciVrgKcbKp0ZwIaA"
+                'android_url': $android_url
             },
             success: function(data) {
                 $btn.button('reset');
-                if(data.msg) {
-                    $errTips.show().html("<strong>" + data.msg + "</strong>");
+                if(data.res != 1) {
+                    $errTips.show().html("<strong>" + data.meg + "</strong>");
                     return false;
                 } 
 
-                if(isLogin) {
-                    if(data.data.recreateFlag==0){
-                        $errTips.show().html("<strong>活码创建成功 ! </strong> 查看统计，修改下载地址，修改微信朋友圈文字，请在管理页面操作。 ");
-                    }else{
-                        $errTips.show().html("<strong>已经存在相同的下载链接二维码，如果需要重新创建，请再后台管理新增渠道 ! </strong>");
-                    }
-                } else {
-                    $btn.removeClass('btn_default').addClass('bg_ccc');
-                }
+                
                 
                 $('#hotApp_box .qrcode_key').val(data.data.accessKey);
                 $('#hotApp_box .user_link_box').show();
@@ -365,9 +315,12 @@
                 $("#hotApp_box .qrcode_img").attr("src", data.data.qrcode_path);
                 $('#hotApp_box .shortUrl').val(data.data.shortUrl);
                 $("#hotApp_box .qrcode_path").val(data.data.qrcode_path);
-                $("#hotApp_box .duanwangzhi-js").attr("href", data.data.shortUrl).text('推广短网址：' + data.data.shortUrl);
-                if($ios_url.indexOf("https://appsto.re/") > -1) {
+               
+                if($ios_url.indexOf("itunes.apple.com") == -1) {
+                	$successTips.show().html("<strong>二维码建成功 ! </strong>");
                     $errTips.show().html('<strong>IOS系统的短链接可能打不开 ! </strong>建议应填写如 https://itunes.apple.com/cn/app/xxx');
+                }else{
+                	$successTips.show().html("<strong>活码创建成功 ! </strong>");
                 }
             },
             error: function(err) {
@@ -381,7 +334,7 @@
 	//实例化一个plupload上传对象
 	var uploader = new plupload.Uploader({
 	    browse_button: 'hotApp-qrcode-addLogo', //触发文件选择对话框的按钮，为那个元素id
-	    url: apiUrl+"fileUploadLogo", //服务器端的上传页面地址
+	    url: apiUrl+"synthesisQRCode", //服务器端的上传页面地址
 	    flash_swf_url: 'js/Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
 	    silverlight_xap_url: 'js/Moxie.xap' //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
 	});
@@ -390,11 +343,13 @@
 	uploader.init();
 	
 	uploader.bind('BeforeUpload', function(uploader, file) {
+		$ios_url = $('#ios_url').val();
+        $android_url = $('#android_url').val();
 	    //每个事件监听函数都会传入一些很有用的参数，
 	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
 	    uploader.setOption("multipart_params", {
-	        "access_key": $('#hotApp_box .qrcode_key').val(),
-	        '_token': "8AuENjo0MXxu0fYX2aqUyNWLciVrgKcbKp0ZwIaA"
+	    	'ios_url': $ios_url,
+            'android_url': $android_url
 	    });
 	});
 	//绑定各种事件，并在事件监听函数中做你想做的事
@@ -407,14 +362,13 @@
 	    if(files.length == 0) {
 	        return;
 	    }
-		uploader.start();
-	   /* $key = $('#hotApp_box .qrcode_key').val();
+	  	$key = $('#hotApp_box .qrcode_key').val();
 	    if($key == '') {
 	        alert("请先生成二维码，再添加logo")
 	        return false;
 	    } else {
 	        uploader.start();
-	    }*/
+	    }
 	});
 	
 	uploader.bind('UploadProgress', function(uploader, file) {
@@ -425,10 +379,9 @@
 	uploader.bind('FileUploaded', function(up, file, info) {
 	    //每个事件监听函数都会传入一些很有用的参数，
 	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
-	    console.info(info.response);
 	    var data = JSON.parse(info.response);
-	    if(data.ret != 0) {
-	        alert(data.msg);
+	    if(data.res != 1) {
+	        alert(data.meg);
 	        return;
 	    } else {
 	        $("#hotApp_box .qrcode_img").attr("src",data.data.qrcode_path);
@@ -540,7 +493,7 @@
 	//实例化一个plupload上传对象
 	var uploader = new plupload.Uploader({
 	    browse_button: 'uploadQrCode', //触发文件选择对话框的按钮，为那个元素id
-	    url: "https://www.hotapp.cn/qrcode/parse", //服务器端的上传页面地址
+	    url: apiUrl+"parseQRCode", //服务器端的上传页面地址
 	    flash_swf_url: 'js/Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
 	    silverlight_xap_url: 'js/Moxie.xap' //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
 	});
@@ -579,12 +532,12 @@
 	    //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
 	    var data = JSON.parse(info.response);
 	    $('#uploadQrCode').button('reset');
-	    if(!data.text) {
+	    if(data.res != 1) {
 	        $('#qrcode-parse-result').text('解析失败').attr('class','text-danger');
 	        return;
 	    } else {
 	        $('#qrcode-parse-result').text('解析成功').attr('class','text-success').show();
-	        $('#decode_box .decode_results_textarea').val(data.text)
+	        $('#decode_box .decode_results_textarea').val(data.data.text)
 	    }
 	});   
 	
@@ -603,17 +556,7 @@
 	    	window.open(apiUrl+"download" + "?qrcode_path=" + qrcode_path);
 	    }
 	}
-	//更多下载
-	function openDownPage(id){
-		var qrcode_path = $(id).find('.shortUrl').val();
-		
-		if(qrcode_path == '') {
-	        alert("请先生成二维码，再下载!");
-	        return false;
-	   } else {
-	    	window.open("https://www.hotapp.cn/downloadQrCode" + "?qrcode_path=" + qrcode_path);
-	    }
-	}
+	
 </script>
 
 </body>

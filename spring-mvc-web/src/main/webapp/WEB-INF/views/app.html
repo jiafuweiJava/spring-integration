@@ -2,9 +2,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>二维码下载 </title>   
- 		<input value="${jiafuwei}">
+ 		<input value="${android_url!''}" id="android_url"  type="hidden">
+ 		<input value="${ios_url!''}" id="ios_url"  type="hidden">
  		
         <script type="text/javascript">
+        	var android_url = document.getElementById("android_url").value;
+        	var ios_url = document.getElementById("ios_url").value;
+                	
             /*
              * 智能机浏览器版本信息:
              *
@@ -29,10 +33,10 @@
             }
  
             if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
-                //window.location="https://itunes.apple.com/cn/app/yi-qiu-yang-ming/id1151325552?l=en&mt=8";
+                window.location= ios_url;
             }
             else if (browser.versions.android) {
-                //window.location="https://mobile.baidu.com/item?docid=10797969&source=s1001";
+                window.location= android_url;
             }
  
 //            document.writeln("语言版本: " + browser.language);
@@ -55,9 +59,9 @@
             } 
             var osType = check_os();
             if (osType == "Apple mac") {
-                //window.location="https://itunes.apple.com/cn/app/yi-qiu-yang-ming/id1151325552?l=en&mt=8";
+                window.location= ios_url;
             }else{
-                //window.location="https://mobile.baidu.com/item?docid=10797969&source=s1001";
+                window.location= android_url;
             }
  
         </script>
