@@ -49,7 +49,12 @@ public class ZXingCodeUtil {
             e.printStackTrace();  
         }  
     }  
-
+    
+    /**
+     * 二维码解析
+     * @param file 二维码图片文件
+     * @return 解析结果
+     */
     public static String parseQRCode(File file) {
         BufferedImage image;  
         try {  

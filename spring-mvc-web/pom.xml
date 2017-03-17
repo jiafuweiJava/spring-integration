@@ -60,9 +60,6 @@
             <version>${spring.version}</version>  
         </dependency> 
         
-    	
-    
-    	
     	<dependency>
   			<groupId>c3p0</groupId>
   			<artifactId>c3p0</artifactId>
@@ -89,9 +86,6 @@
             <version>1.2.2</version>  
         </dependency> 
         
-        
-         
-        
          <!-- 上传组件包 -->  
         <dependency>  
             <groupId>commons-fileupload</groupId>  
@@ -108,12 +102,6 @@
             <artifactId>commons-codec</artifactId>  
             <version>1.9</version>  
         </dependency> 
-    
-    
-    
-    
-    
-    
     
     <!-- servlet -->
     <dependency>
@@ -198,6 +186,12 @@
 	    <groupId>io.springfox</groupId>
 	    <artifactId>springfox-swagger-ui</artifactId>
 	    <version>2.5.0</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>com.jiafuwei.spring</groupId>
+	    <artifactId>spring-common</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
 	</dependency>
     
   </dependencies>

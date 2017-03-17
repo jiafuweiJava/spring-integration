@@ -7,5 +7,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>spring-mvc-web</module>
+    <module>spring-common</module>
   </modules>
 </project>
